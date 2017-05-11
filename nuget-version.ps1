@@ -103,19 +103,19 @@ else
 {
     Write-Host "The last version of package is $resultsPackageVersion"
 
-    Write-Host "Check if exists the same version on build dir $buildDirectory" -NoNewline
+    Write-Host "Check if exists the same version on build dir $buildDirectory */ $packageFileName " -NoNewline
     $packagePath = FindPackage -searchLoc $buildDirectory -packageFileName $packageFileName
 
     Write-Host ""
 
-    if ($packagePath)
+    if (-not $packagePath)
     {
-        Write-Warning "The package already exists on the build directory, you can't push the same package."
-        disablePush
+        Write-Debug "Package $packageName or file $packageFileName does not exists in this build, you can push it!"
+        enablePush        
     }
     else
     {
-        Write-Debug "Package $packageName or file $packageFileName does not exists in this build, you can push it!"
-        enablePush
+        Write-Warning "The package already exists on the build directory, you can't push the same package."
+        disablePush
     }
 }
