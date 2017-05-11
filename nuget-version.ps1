@@ -12,16 +12,8 @@ function DownloadFile($source,$destination)
     $client.DownloadFile($source,$destination)
 }
 
-function enablePush()
-{
-    Write-Host "Setting NugetEnabled variable to push"
-    ##vso[task.setvariable variable=NugetEnabled]push
-}
-
 function disablePush()
 {
-    Write-Host "Setting NugetEnabled variable to dontpush"
-    ##vso[task.setvariable variable=NugetEnabled]dontpush
 }
 
 function FindPackage($searchLoc, $packageFileName)
@@ -93,7 +85,7 @@ if ($firstLine -contains "error")
 if ($firstLine -eq "No packages found.")
 {
     Write-Host "Package not exists in Nuget Repository, you can push it."
-    enablePush    
+    Write-Output ("##vso[task.setvariable variable=NugetEnabled;]push")
 }
 
 if ($resultsPackageName -ne $packageName)
@@ -113,7 +105,7 @@ else
     if (-not $packagePath)
     {
         Write-Host "Package $packageName or file $packageFileName does not exists in this build, you can push it!"
-        enablePush        
+        Write-Output ("##vso[task.setvariable variable=NugetEnabled;]push")
     }
     else
     {
