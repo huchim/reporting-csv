@@ -90,28 +90,28 @@ if ($firstLine -contains "error")
 
 if ($firstLine -eq "No packages found.")
 {
-    enablePush
     Write-Host "Package not exists in Nuget Repository, you can push it."
+    enablePush    
 }
 
 if ($resultsPackageName -ne $packageName)
 {
-    disablePush
     Write-Debug "Package was not found. ERROR: $firstLine"
+    disablePush    
 }
 else 
 {
     Write-Host "The last version of package is $resultsPackageVersion"
 
-    Write-Host "Check if exists the same version on build dir " -NoNewline
-    $packagePath = FindPackage -searchLoc $PSScriptRoot -packageFileName $packageFileName
+    Write-Host "Check if exists the same version on build dir $buildDirectory" -NoNewline
+    $packagePath = FindPackage -searchLoc $buildDirectory -packageFileName $packageFileName
 
     Write-Host ""
 
     if ($packagePath)
     {
-        disablePush
         Write-Warning "The package already exists on the build directory, you can't push the same package."
+        disablePush
     }
     else
     {
