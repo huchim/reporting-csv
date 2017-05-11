@@ -14,11 +14,13 @@ function DownloadFile($source,$destination)
 
 function enablePush()
 {
+    Write-Host "Setting NugetEnabled variable to push"
     ##vso[task.setvariable variable=NugetEnabled;]push
 }
 
 function disablePush()
 {
+    Write-Host "Setting NugetEnabled variable to dontpush"
     ##vso[task.setvariable variable=NugetEnabled;]dontpush
 }
 
