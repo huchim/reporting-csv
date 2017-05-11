@@ -2,8 +2,6 @@ Param(
    [string]$packageName
 )
 
-Import-Module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
-
 $nugetOriginalUrl = "http://dist.nuget.org/win-x86-commandline/latest/nuget.exe"  #version 3.x
 $buildDirectory = $env:BUILD_SOURCESDIRECTORY
 
@@ -17,15 +15,13 @@ function DownloadFile($source,$destination)
 function enablePush()
 {
     Write-Host "Setting NugetEnabled variable to push"
-    $enabled = "push"
-    Set-TaskVariable "NugetEnabled" $enabled
+    ##vso[task.setvariable variable=NugetEnabled]push
 }
 
 function disablePush()
 {
     Write-Host "Setting NugetEnabled variable to dontpush"
-    $enabled = "dontpush"
-    Set-TaskVariable "NugetEnabled" $enabled
+    ##vso[task.setvariable variable=NugetEnabled]dontpush
 }
 
 function FindPackage($searchLoc, $packageFileName)
