@@ -14,12 +14,12 @@ function DownloadFile($source,$destination)
 
 function enablePush()
 {
-    ##vso[task.setvariable variable=NugetEnabled;]true
+    ##vso[task.setvariable variable=NugetEnabled;]push
 }
 
 function disablePush()
 {
-    ##vso[task.setvariable variable=NugetEnabled;]false
+    ##vso[task.setvariable variable=NugetEnabled;]dontpush
 }
 
 function FindPackage($searchLoc, $packageFileName)
