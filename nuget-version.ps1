@@ -96,7 +96,7 @@ if ($firstLine -eq "No packages found.")
 
 if ($resultsPackageName -ne $packageName)
 {
-    Write-Debug "Package was not found. ERROR: $firstLine"
+    Write-Host "Package was not found. ERROR: $firstLine"
     disablePush    
 }
 else 
@@ -110,7 +110,7 @@ else
 
     if (-not $packagePath)
     {
-        Write-Debug "Package $packageName or file $packageFileName does not exists in this build, you can push it!"
+        Write-Host "Package $packageName or file $packageFileName does not exists in this build, you can push it!"
         enablePush        
     }
     else
