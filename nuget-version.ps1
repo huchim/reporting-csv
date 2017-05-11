@@ -75,7 +75,7 @@ if(-not $nugetPath)
    Write-Host ""
 }
 
-Write-Host "Check last version of package online"
+Write-Host "Check last version of package $packageName online"
 $OutputVariable = & $nugetPath list $packageName -PreRelease -NonInteractive -ForceEnglishOutput | Out-String
 $firstLine = (($OutputVariable -split '\n')[0]).ToString().Trim()
 $resultsPackageName = ($firstLine -split '\s+')[0]
@@ -115,6 +115,7 @@ else
     }
     else
     {
+        Write-Debug "Package $packageName or file $packageFileName does not exists in this build, you can push it!"
         enablePush
     }
 }
