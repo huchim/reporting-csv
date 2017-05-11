@@ -1,7 +1,8 @@
+Param(
+   [string]$packageName
+)
+
 $nugetOriginalUrl = "http://dist.nuget.org/win-x86-commandline/latest/nuget.exe"  #version 3.x
-# $buildDirectory = $env:AGENT_BUILDDIRECTORY
-# $buildDirectory = $env:AGENT_BUILDDIRECTORY
-$packageName = $env:NUGET_PACKAGENAME
 $buildDirectory = $env:BUILD_SOURCESDIRECTORY
 
 # Helpers functions
