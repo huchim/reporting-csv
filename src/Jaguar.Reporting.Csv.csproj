@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFrameworks>net40;net45;netcoreapp1.1</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Carlos Jesús Huchim Ahumada</Authors>
     <Company>Jaguar</Company>
@@ -9,21 +8,26 @@
     <Copyright>Carlos Jesús Huchim Ahumada</Copyright>
     <PackageTags>reporting</PackageTags>
     <PackageReleaseNotes>Beta</PackageReleaseNotes>
-    <Version>1.0.0-beta1</Version>
+    <Version>1.0.0-beta2</Version>
     <PackageProjectUrl>https://github.com/huchim/reporting-csv</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/huchim/reporting-csv/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/huchim/reporting-csv</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <RootNamespace>Jaguar.Reporting</RootNamespace>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp1.1|AnyCPU'">
     <DocumentationFile>bin\Release\netcoreapp1.1\Jaguar.Reporting.Csv.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
+    <DocumentationFile>bin\Release\net40\Jaguar.Reporting.Csv.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
+    <DocumentationFile>bin\Release\net45\Jaguar.Reporting.Csv.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Jaguar.Reporting" Version="1.0.0-beta3" />
+    <PackageReference Include="Jaguar.Reporting" Version="1.0.0-rc3" />
   </ItemGroup>
 </Project>
